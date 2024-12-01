@@ -12,7 +12,11 @@ const Modal = ({
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-      <div className="bg-white rounded-lg shadow-lg p-6 w-[90%] max-w-xl relative">
+      {" "}
+      {/* z-50 added */}
+      <div className="bg-white rounded-lg shadow-lg p-6 w-[90%] max-w-xl relative z-60">
+        {" "}
+        {/* z-60 added */}
         <button
           className="absolute top-4 right-4 text-gray-500 hover:text-black"
           onClick={onClose}
@@ -64,7 +68,7 @@ const Modal = ({
 
           <div className="mt-4 flex justify-center items-center gap-2">
             <button
-              className="bg-red-600 text-wihte px-4 py-2 rounded hover:bg-red-800"
+              className="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-800"
               onClick={onClose}
             >
               Close

@@ -1,5 +1,3 @@
-import React from "react";
-
 const Cart = ({
   isOpen,
   onClose,
@@ -53,7 +51,7 @@ const Cart = ({
   }, 0);
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-40">
       <div className="bg-[#1f2937] text-white w-96 p-6 rounded-lg shadow-lg">
         <h2 className="text-xl font-bold mb-4">Your Cart</h2>
         <div className="max-h-64 overflow-y-auto">{cartItems}</div>

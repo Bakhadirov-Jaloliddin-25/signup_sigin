@@ -2,31 +2,23 @@ import React from "react";
 
 const Loader = () => {
   return (
-    <div className="flex justify-center items-center w-full h-screen bg-[#1f2937]">
-      <div className="loader font-mono font-bold text-4xl">
+    <div className="flex justify-center w-full h-full bg-[#0f172a]">
+      <div className="loader font-mono font-bold text-4xl text-white">
         <style>{`
+          /* HTML: <div class="loader"></div> */
           .loader {
             width: fit-content;
-            background: linear-gradient(90deg, #000 50%, #0000 0) right / 200%
-              100%;
-            animation: l21 2s infinite linear;
+            font-weight: bold;
+            font-family: sans-serif;
+            font-size: 30px;
+            padding-bottom: 8px;
+            background: linear-gradient(currentColor 0 0) 0 100%/0% 3px no-repeat;
+            animation: l2 2s linear infinite;
           }
-
-          .loader::before {
-            content: "Loading...";
-            color: #0000;
-            padding: 0 5px;
-            background: inherit;
-            background-image: linear-gradient(90deg, #fff 50%, #000 0);
-            -webkit-background-clip: text;
-            background-clip: text;
+          .loader:before {
+            content:"Loading..."
           }
-
-          @keyframes l21 {
-            100% {
-              background-position: left;
-            }
-          }
+          @keyframes l2 {to{background-size: 100% 3px}}
         `}</style>
       </div>
     </div>

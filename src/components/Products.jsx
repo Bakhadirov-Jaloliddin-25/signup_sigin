@@ -4,6 +4,7 @@ import Stars from "./Stars";
 import Modal from "./Modal";
 import CartModal from "./Cart";
 import Loader from "./Loader";
+import Skeleton from "./Skeleton";
 
 const API_URL = "https://fakestoreapi.com";
 
@@ -87,7 +88,7 @@ const Products = () => {
     <div
       key={pro.id}
       onClick={() => openModal(pro)}
-      className="flex flex-col justify-between shadow-lg border border-gray-800 rounded-lg p-4 text-center bg-[#1f2937] text-white cursor-pointer hover:shadow-2xl hover:bg-[#685cac] transition-all duration-300 hover:scale-105"
+      className="h-[386px] flex flex-col justify-between shadow-lg border border-gray-800 rounded-lg p-4 text-center bg-[#1f2937] cursor-pointer hover:shadow-2xl hover:bg-[#685cac] transition-all duration-300 hover:scale-105"
     >
       <div className="bg-white rounded-lg overflow-hidden h-[180px] flex items-center justify-center">
         <img
@@ -144,7 +145,12 @@ const Products = () => {
   ));
 
   if (isLoading) {
-    return <Loader />;
+    return (
+      <>
+        <Loader />
+        <Skeleton count={12} />
+      </>
+    );
   }
 
   if (error) {
@@ -152,7 +158,7 @@ const Products = () => {
   }
 
   return (
-    <div className="min-h-screen bg-[#0f172a] text-white flex flex-col items-center justify-center py-8">
+    <div className="bg-[#0f172a] text-white flex flex-col items-center justify-center py-8">
       <h1 className="text-3xl font-bold mb-6 text-center">
         Explore Our Products
       </h1>
@@ -161,7 +167,8 @@ const Products = () => {
           {productItem}
         </div>
       </div>
-      {selectedProduct && (
+
+      {selectedProduct && isModalOpen && (
         <Modal
           isOpen={isModalOpen}
           onClose={closeModal}
@@ -181,7 +188,7 @@ const Products = () => {
         handleRemoveFromCart={handleRemoveFromCart}
       />
 
-      <div className="fixed bottom-4 right-4 bg-indigo-800 text-white p-4 rounded-lg shadow-lg w-60">
+      <div className="fixed bottom-4 right-4 bg-indigo-800 text-white p-4 rounded-lg shadow-lg w-60 z-50">
         <h2 className="text-xl font-semibold">Savat</h2>
         <div className="mt-2">
           <p className="text-sm">Mahsulotlar: {totalItems}</p>
@@ -191,13 +198,13 @@ const Products = () => {
           onClick={openCartModal}
           className="mt-4 bg-blue-600 px-4 py-2 rounded text-white hover:bg-blue-700 w-full"
         >
-          Savatga o'tish
+          Go to cart
         </button>
         <button
           onClick={clearCart}
           className="mt-4 bg-red-600 px-4 py-2 rounded text-white hover:bg-red-700 w-full"
         >
-          Savatni tozalash
+          Clear
         </button>
       </div>
     </div>

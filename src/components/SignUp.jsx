@@ -7,81 +7,120 @@ const SignUp = ({ toggle }) => {
     password: "",
     confirmPassword: "",
   });
+  const [errors, setErrors] = useState({});
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData((prevData) => ({
-      ...prevData,
+    setFormData((prev) => ({
+      ...prev,
       [name]: value,
     }));
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (formData.password !== formData.confirmPassword) {
-      alert("Passwords do not match!");
-      return;
-    }
 
-    console.log("Form submitted", formData);
+    const newErrors = {};
+    if (!formData.username) newErrors.username = "Username is required!";
+    if (!formData.email) newErrors.email = "Email is required!";
+    if (!formData.password) newErrors.password = "Password is required!";
+    if (formData.password !== formData.confirmPassword)
+      newErrors.confirmPassword = "Passwords do not match!";
+    setErrors(newErrors);
+
+    if (Object.keys(newErrors).length === 0) {
+      console.log("Form submitted", formData);
+    }
   };
 
   return (
-    <div className="w-full max-w-md mx-auto p-6 bg-white rounded-lg shadow-lg">
-      <h2 className="text-2xl font-semibold mb-4 text-center">Sign Up</h2>
-      <form onSubmit={handleSubmit}>
-        <input
-          className="w-full mb-4 p-2 border border-gray-400 rounded"
-          type="text"
-          name="username"
-          placeholder="Username"
-          value={formData.username}
-          onChange={handleChange}
-          required
-        />
-        <input
-          className="w-full mb-4 p-2 border border-gray-400 rounded"
-          type="email"
-          name="email"
-          placeholder="Email"
-          value={formData.email}
-          onChange={handleChange}
-          required
-        />
-        <input
-          className="w-full mb-4 p-2 border border-gray-400 rounded"
-          type="password"
-          name="password"
-          placeholder="Password"
-          value={formData.password}
-          onChange={handleChange}
-          required
-        />
-        <input
-          className="w-full mb-4 p-2 border border-gray-400 rounded"
-          type="password"
-          name="confirmPassword"
-          placeholder="Confirm Password"
-          value={formData.confirmPassword}
-          onChange={handleChange}
-          required
-        />
-
+    <div className="w-full max-w-md mx-auto p-6 bg-gradient-to-r from-gray-100 via-white to-gray-100 rounded-xl shadow-lg">
+      <h2 className="text-3xl font-bold text-gray-800 text-center mb-4">
+        Create Account
+      </h2>
+      <form onSubmit={handleSubmit} className="space-y-4">
+        <div className="relative">
+          <input
+            type="text"
+            name="username"
+            placeholder="Username"
+            value={formData.username}
+            onChange={handleChange}
+            className={`w-full px-4 py-3 border rounded-lg text-gray-700 focus:outline-none ${
+              errors.username
+                ? "border-red-500 focus:ring-red-400"
+                : "border-gray-300 focus:ring-blue-400"
+            }`}
+          />
+          {errors.username && (
+            <p className="text-sm text-red-500 mt-1">{errors.username}</p>
+          )}
+        </div>
+        <div className="relative">
+          <input
+            type="email"
+            name="email"
+            placeholder="Email"
+            value={formData.email}
+            onChange={handleChange}
+            className={`w-full px-4 py-3 border rounded-lg text-gray-700 focus:outline-none ${
+              errors.email
+                ? "border-red-500 focus:ring-red-400"
+                : "border-gray-300 focus:ring-blue-400"
+            }`}
+          />
+          {errors.email && (
+            <p className="text-sm text-red-500 mt-1">{errors.email}</p>
+          )}
+        </div>
+        <div className="relative">
+          <input
+            type="password"
+            name="password"
+            placeholder="Password"
+            value={formData.password}
+            onChange={handleChange}
+            className={`w-full px-4 py-3 border rounded-lg text-gray-700 focus:outline-none ${
+              errors.password
+                ? "border-red-500 focus:ring-red-400"
+                : "border-gray-300 focus:ring-blue-400"
+            }`}
+          />
+          {errors.password && (
+            <p className="text-sm text-red-500 mt-1">{errors.password}</p>
+          )}
+        </div>
+        <div className="relative">
+          <input
+            type="password"
+            name="confirmPassword"
+            placeholder="Confirm Password"
+            value={formData.confirmPassword}
+            onChange={handleChange}
+            className={`w-full px-4 py-3 border rounded-lg text-gray-700 focus:outline-none ${
+              errors.confirmPassword
+                ? "border-red-500 focus:ring-red-400"
+                : "border-gray-300 focus:ring-blue-400"
+            }`}
+          />
+          {errors.confirmPassword && (
+            <p className="text-sm text-red-500 mt-1">
+              {errors.confirmPassword}
+            </p>
+          )}
+        </div>
         <button
           type="submit"
-          className="bg-indigo-500 text-white px-8 py-3 rounded-full"
+          className="w-full bg-gradient-to-r from-purple-500 to-pink-500 text-white py-3 rounded-lg font-semibold shadow-md hover:shadow-lg transition transform hover:scale-105"
         >
           Sign Up
         </button>
-
-        <div className="flex justify-center mt-4">
-          <button
-            onClick={() => toggle()}
-            className="text-indigo-500 hover:text-indigo-700"
-          >
-            Already have an account? Sign In
-          </button>
-        </div>
+        <p
+          onClick={() => toggle("signIn")}
+          className="text-purple-500 hover:text-pink-500 text-center cursor-pointer mt-4"
+        >
+          Already have an account? Sign In
+        </p>
       </form>
     </div>
   );

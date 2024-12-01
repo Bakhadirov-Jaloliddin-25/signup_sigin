@@ -7,7 +7,7 @@ const Header = () => {
 
   return (
     <div className="w-full sticky top-0 z-50 bg-gray-900 shadow-lg opacity-95">
-      <nav className="flex justify-between items-center py-4 px-6 max-w-7xl mx-auto">
+      <nav className="flex justify-between items-center py-4 px-6 max-w-7xl mx-auto z-200">
         <a href="/" className="flex items-center space-x-3 rtl:space-x-reverse">
           <div className="bg-gray-200 p-2 rounded-full">
             <img

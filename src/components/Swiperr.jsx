@@ -1,10 +1,5 @@
 import React, { useRef, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-
-import img1 from "../assets/img1.jpg";
-import img2 from "../assets/img2.jpg";
-import img3 from "../assets/img3.avif";
-
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
@@ -20,7 +15,7 @@ export default function Swiperrr() {
         }}
         navigation={true}
         modules={[Pagination, Navigation]}
-        className="mySwiper w-[80%] h-[500px] rounded-2xl mb- max-lg:h-[350px] max-md:h-[300px]  max-sm:h-[250px]"
+        className="mySwiper w-full h-full rounded-2xl max-lg:h-[350px] max-md:h-[300px]  max-sm:h-[250px] mt-5 z-10"
         loop={true}
       >
         <SwiperSlide className=" ">
